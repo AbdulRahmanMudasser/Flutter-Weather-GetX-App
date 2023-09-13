@@ -26,9 +26,13 @@ class CurrentModel {
       temp: json['temp'],
       pressure: json['pressure'],
       humidity: json['humidity'],
-      weather: (json['weather'] as List).map((e) => WeatherModel.fromJson(e)).toList(),
-      clouds: CloudModel.fromJson(json['clouds']),
-      wind: WindModel.fromJson(json['wind']),
+      weather: json['weather'] != null && json['weather'] is List
+          ? (json['weather'] as List).map((e) => WeatherModel.fromJson(e)).toList()
+          : null,
+      clouds: json['clouds'] != null
+          ? CloudModel.fromJson(json['clouds'] as Map<String, dynamic>)
+          : null,
+      wind: json['wind'] != null ? WindModel.fromJson(json['wind'] as Map<String, dynamic>) : null,
     );
   }
 

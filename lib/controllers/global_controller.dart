@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_weather_getx_app/api/fetch_weather.dart';
 import 'package:flutter_weather_getx_app/data/weather_data.dart';
 import 'package:geolocator/geolocator.dart';
@@ -6,7 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 class GlobalController extends GetxController {
   // declares variables
-  final RxBool _isLoading = true.obs; // checks whether the data is loaded or not
+  final RxBool _isLoading = true.obs;   // checks whether the data is loaded or not
   final RxDouble _latitude = 0.0.obs;
   final RxDouble _longitude = 0.0.obs;
 
@@ -31,7 +32,8 @@ class GlobalController extends GetxController {
 
   getLocation() async {
     bool isServiceEnabled;
-    PermissionStatus permissionStatus;
+    // PermissionStatus permissionStatus;
+    PermissionWithService permission;
     LocationPermission locationPermission;
 
     // check for the location service is enabled or not
@@ -40,17 +42,19 @@ class GlobalController extends GetxController {
     // return if service is not enabled
     if (!isServiceEnabled) {
       // we will ask the user to turn the location on and save in permissionStatus
-      permissionStatus = await Permission.locationWhenInUse.status;
+      // permissionStatus = await Permission.locationWhenInUse.status;
+
+      permission = Permission.locationWhenInUse;
 
       // check whether the user has denied the permission permanently
-      if (permissionStatus == PermissionStatus.permanentlyDenied) {
-        return Future.error("Turning Location On Service Permanently Denied");
-      } else if (permissionStatus == PermissionStatus.denied) {
+      if (permission.status == PermissionStatus.permanentlyDenied) {
+        return Future.error("Turning Location-On Service Permanently Denied");
+      } else if (permission.status == PermissionStatus.denied) {
         // then request for the permission again
-        permissionStatus = await Permission.locationWhenInUse.status;
+        permission = Permission.locationWhenInUse;
 
         // check if the user denied the permission again
-        if (permissionStatus == PermissionStatus.denied) {
+        if (permission.status == PermissionStatus.denied) {
           return Future.error("Turning Location On Service Denied");
         }
       }
@@ -77,6 +81,9 @@ class GlobalController extends GetxController {
       // then update the value of longitude and latitude
       _longitude.value = value.longitude;
       _latitude.value = value.latitude;
+
+      debugPrint("Longitude ${value.longitude}");
+      debugPrint("Latitude ${value.latitude}");
 
       return FetchWeatherAPI().processData(value.longitude, value.latitude).then((value) {
         weatherData.value = value;
