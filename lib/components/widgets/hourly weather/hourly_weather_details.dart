@@ -24,7 +24,11 @@ class HourlyWeatherDetails extends StatelessWidget {
         Text(
           timeStampToParticularFormat(hourly.dt),
           textAlign: TextAlign.center,
-          style: TextStyle(color: color, fontWeight: FontWeight.w400, fontSize: 12),
+          style: TextStyle(
+            color: color,
+            fontWeight: FontWeight.w400,
+            fontSize: 12,
+          ),
         ),
 
         const SizedBox(

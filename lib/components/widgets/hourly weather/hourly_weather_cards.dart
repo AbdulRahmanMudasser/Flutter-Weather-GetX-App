@@ -21,12 +21,12 @@ class HourlyWeatherCards extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: const EdgeInsets.only(left: 15),
+        padding: EdgeInsets.only(left: AppSize.baseSize * 1.6),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
             hourlyWeatherData.hourly.length > 6 ? 6 : hourlyWeatherData.hourly.length,
-                (index) => Obx(() {
+            (index) => Obx(() {
               return GestureDetector(
                 onTap: () {
                   currentIndex.value = index;
@@ -36,11 +36,11 @@ class HourlyWeatherCards extends StatelessWidget {
                   padding: const EdgeInsets.all(15),
                   alignment: Alignment.center,
                   height: AppSize.baseSize * 16.2,
-                  width: AppSize.baseSize * 10,
+                  width: AppSize.baseSize * 11,
                   decoration: BoxDecoration(
                     // color: AppColors.cardColor,
                     color:
-                    currentIndex.value == index ? const Color(0xff007ad9) : AppColors.cardColor,
+                        currentIndex.value == index ? const Color(0xff007ad9) : AppColors.cardColor,
                     borderRadius: BorderRadius.circular(15),
                     // boxShadow: [
                     //   BoxShadow(
@@ -53,7 +53,7 @@ class HourlyWeatherCards extends StatelessWidget {
                   ),
                   child: HourlyWeatherDetails(
                     hourly: hourlyWeatherData.hourly[index],
-                    color: currentIndex.value == index ? Colors.white : Colors.black,
+                    color: currentIndex.value == index ? Colors.white : AppColors.textColorBlack,
                   ),
                 ),
               );

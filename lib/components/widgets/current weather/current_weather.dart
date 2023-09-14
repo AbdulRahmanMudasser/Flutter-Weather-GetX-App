@@ -19,27 +19,30 @@ class CurrentWeather extends StatelessWidget {
         TemperatureArea(current: currentWeatherData.current),
 
         SizedBox(
-          height: AppSize.baseSize * 2.5,
+          height: AppSize.baseSize * 3,
         ),
 
         // current wind speed, clouds and humidity
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            SmallCard(
-              leadingText: currentWeatherData.current.wind.speed.toString(),
-              icon: AppAssets.windSpeed,
-              suffixText: " km/h",
-            ),
-            SmallCard(
-              leadingText: currentWeatherData.current.clouds.all.toString(),
-              icon: AppAssets.clouds,
-            ),
-            SmallCard(
-              leadingText: currentWeatherData.current.humidity.toString(),
-              icon: AppAssets.humidity,
-            ),
-          ],
+        Padding(
+          padding:  EdgeInsets.symmetric(horizontal: AppSize.baseSize * 3),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SmallCard(
+                leadingText: currentWeatherData.current.wind.speed.toString(),
+                icon: AppAssets.windSpeed,
+                suffixText: " m/s",
+              ),
+              SmallCard(
+                leadingText: currentWeatherData.current.clouds.all.toString(),
+                icon: AppAssets.clouds,
+              ),
+              SmallCard(
+                leadingText: currentWeatherData.current.humidity.toString(),
+                icon: AppAssets.humidity,
+              ),
+            ],
+          ),
         ),
       ],
     );

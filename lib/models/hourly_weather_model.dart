@@ -2,13 +2,11 @@ import 'package:flutter_weather_getx_app/models/weather_model.dart';
 
 class HourlyWeatherModel {
   int dt;
-  String dtText;
   int temp;
   WeatherModel weather;
 
   HourlyWeatherModel({
     required this.dt,
-    required this.dtText,
     required this.temp,
     required this.weather,
   });
@@ -18,7 +16,6 @@ class HourlyWeatherModel {
   factory HourlyWeatherModel.fromJson(Map<String, dynamic> json) {
     return HourlyWeatherModel(
       dt: json['dt'],
-      dtText: json['dt_txt'],
       temp: json['main']['temp'].toInt(),
       weather: WeatherModel.fromJson(json['weather'][0]),
     );
@@ -38,7 +35,6 @@ class HourlyWeatherModel {
   Map<String, dynamic> toJson() {
     return {
       'dt': dt,
-      'dt_text': dtText,
       'temp': temp,
       'weather': weather.toJson(),
     };
