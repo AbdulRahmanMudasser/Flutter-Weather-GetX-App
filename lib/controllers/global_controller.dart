@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_weather_getx_app/api/fetch_weather.dart';
+import 'package:flutter_weather_getx_app/api/fetch_open_weather_api.dart';
 import 'package:flutter_weather_getx_app/data/weather_data.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -12,6 +12,16 @@ class GlobalController extends GetxController {
   final RxDouble _longitude = 0.0.obs;
 
   final weatherData = WeatherData().obs;
+
+  WeatherData getWeatherData() {
+    return weatherData.value;
+  }
+
+  final RxInt _currentIndex = 0.obs;    // for changing the card color
+
+  RxInt getCurrentIndex() {
+    return _currentIndex;
+  }
 
   // instance for them to be called
   // or you can say getters
@@ -27,6 +37,8 @@ class GlobalController extends GetxController {
 
     if (_isLoading.isTrue) {
       getLocation();
+    } else {
+      getCurrentIndex();
     }
   }
 
@@ -85,7 +97,7 @@ class GlobalController extends GetxController {
       debugPrint("Longitude ${value.longitude}");
       debugPrint("Latitude ${value.latitude}");
 
-      return FetchWeatherAPI().processData(value.longitude, value.latitude).then((value) {
+      return FetchOpenWeatherAPI().processData(value.latitude, value.longitude).then((value) {
         weatherData.value = value;
 
         // set the check for loading to false

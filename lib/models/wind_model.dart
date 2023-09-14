@@ -6,7 +6,7 @@ class WindModel {
   // from json
   factory WindModel.fromJson(Map<String, dynamic> json) {
     return WindModel(
-      speed: json['speed'],
+      speed: json['speed'].toDouble(),
     );
   }
 

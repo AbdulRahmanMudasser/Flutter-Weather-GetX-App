@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weather_getx_app/components/widgets/hourly%20weather/hourly_weather.dart';
 import 'package:get/get.dart';
 
+import '../components/widgets/current weather/current_weather.dart';
 import '../components/widgets/header.dart';
 import '../config/app_size.dart';
 import '../controllers/global_controller.dart';
@@ -39,9 +41,25 @@ class _HomeScreenState extends State<HomeScreen> {
               : ListView(
                   children: [
                     SizedBox(
+                      height: AppSize.baseSize * 1.3,
+                    ),
+
+                    // location name, time
+                    const Header(),
+
+                    // current weather
+                    CurrentWeather(
+                      currentWeatherData: globalController.getWeatherData().getCurrentWeatherData(),
+                    ),
+
+                    SizedBox(
                       height: AppSize.baseSize * 2,
                     ),
-                    Header(),
+
+                    // hourly weather
+                    HourlyWeather(
+                      hourlyWeatherData: globalController.getWeatherData().getHourlyWeatherData(),
+                    ),
                   ],
                 ),
         ),

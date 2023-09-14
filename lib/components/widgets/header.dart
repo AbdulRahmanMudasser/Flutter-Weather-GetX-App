@@ -50,18 +50,18 @@ class _HeaderState extends State<Header> {
           child: Text(
             locality,
             style: TextStyle(
-              fontSize: AppSize.baseSize * 3.5,
+              fontSize: AppSize.baseSize * 3.3,
             ),
           ),
         ),
 
         // date
         Container(
-          margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+          margin: EdgeInsets.only(left: 20, right: 20, bottom: AppSize.baseSize * 2),
           child: Text(
             date,
             style: TextStyle(
-              fontSize: AppSize.baseSize * 1.7,
+              fontSize: AppSize.baseSize * 1.5,
               height: 1.5,
               color: Colors.grey[700],
             ),
