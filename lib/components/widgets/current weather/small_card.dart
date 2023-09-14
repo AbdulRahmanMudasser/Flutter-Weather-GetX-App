@@ -29,7 +29,7 @@ class SmallCard extends StatelessWidget {
           child: Image.asset(icon),
         ),
         const SizedBox(
-          height: 6,
+          height: 10,
         ),
         Text(
           "$leadingText$suffixText",

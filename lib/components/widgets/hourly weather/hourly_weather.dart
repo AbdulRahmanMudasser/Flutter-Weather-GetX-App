@@ -12,11 +12,18 @@ class HourlyWeather extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // today text
-        Text(
-          "Today",
-          style: TextStyle(fontSize: AppSize.baseSize * 2),
+        Padding(
+          padding: EdgeInsets.only(left: AppSize.baseSize * 2),
+          child: Text(
+            "Today",
+            style: TextStyle(
+              fontSize: AppSize.baseSize * 2,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ),
 
         SizedBox(
@@ -29,7 +36,3 @@ class HourlyWeather extends StatelessWidget {
     );
   }
 }
-
-
-
-
