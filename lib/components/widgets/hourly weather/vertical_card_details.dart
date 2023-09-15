@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../config/app_size.dart';
 import '../../../models/hourly_weather_model.dart';
-import '../../methods/celsius_to_fahrenheit.dart';
+import '../../methods/kelvin_to_celsius.dart';
 import '../../methods/timestamp_to_particular_format.dart';
 
-class HourlyWeatherDetails extends StatelessWidget {
-  const HourlyWeatherDetails({
+class VerticalCardDetails extends StatelessWidget {
+  const VerticalCardDetails({
     super.key,
     required this.hourly,
     required this.color,
@@ -48,7 +48,7 @@ class HourlyWeatherDetails extends StatelessWidget {
 
         // temperature
         Text(
-          "${kelvinToCelsius(hourly.temp)}°",
+          "${kelvinToCelsius(hourly.temp).toStringAsFixed(0)}°",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 16,

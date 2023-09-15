@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_weather_getx_app/config/app_size.dart';
+import 'package:flutter_weather_getx_app/components/widgets/header/today_date.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../controllers/global_controller.dart';
+import '../../../controllers/global_controller.dart';
+import 'locality.dart';
 
 class Header extends StatefulWidget {
   const Header({super.key});
@@ -45,29 +46,15 @@ class _HeaderState extends State<Header> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // locality
-        Container(
-          margin: const EdgeInsets.only(left: 20, right: 20),
-          child: Text(
-            locality,
-            style: TextStyle(
-              fontSize: AppSize.baseSize * 3.3,
-            ),
-          ),
-        ),
+        Locality(locality: locality),
 
         // date
-        Container(
-          margin: EdgeInsets.only(left: 20, right: 20, bottom: AppSize.baseSize * 2),
-          child: Text(
-            date,
-            style: TextStyle(
-              fontSize: AppSize.baseSize * 1.5,
-              height: 1.5,
-              color: Colors.grey[700],
-            ),
-          ),
-        ),
+        TodayDate(date: date),
       ],
     );
   }
 }
+
+
+
+

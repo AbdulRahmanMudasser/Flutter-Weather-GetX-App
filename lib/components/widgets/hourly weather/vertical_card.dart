@@ -5,10 +5,10 @@ import '../../../config/app_colors.dart';
 import '../../../config/app_size.dart';
 import '../../../controllers/global_controller.dart';
 import '../../../data/hourly_weather_data.dart';
-import 'hourly_weather_details.dart';
+import 'vertical_card_details.dart';
 
-class HourlyWeatherCards extends StatelessWidget {
-  HourlyWeatherCards({
+class VerticalCard extends StatelessWidget {
+  VerticalCard({
     super.key,
     required this.hourlyWeatherData,
   });
@@ -35,8 +35,8 @@ class HourlyWeatherCards extends StatelessWidget {
                   margin: const EdgeInsets.only(right: 15),
                   padding: const EdgeInsets.all(15),
                   alignment: Alignment.center,
-                  height: AppSize.baseSize * 16.2,
-                  width: AppSize.baseSize * 11,
+                  height: AppSize.baseSize * 16.7,
+                  width: AppSize.baseSize * 12,
                   decoration: BoxDecoration(
                     // color: AppColors.cardColor,
                     color:
@@ -51,7 +51,7 @@ class HourlyWeatherCards extends StatelessWidget {
                     //   ),
                     // ],
                   ),
-                  child: HourlyWeatherDetails(
+                  child: VerticalCardDetails(
                     hourly: hourlyWeatherData.hourly[index],
                     color: currentIndex.value == index ? Colors.white : AppColors.textColorBlack,
                   ),

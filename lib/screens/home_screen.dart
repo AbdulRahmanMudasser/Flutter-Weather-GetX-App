@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_weather_getx_app/components/widgets/daily%20weather/daily_weather.dart';
+import 'package:flutter_weather_getx_app/components/widgets/footer/footer.dart';
 import 'package:flutter_weather_getx_app/components/widgets/hourly%20weather/hourly_weather.dart';
+import 'package:flutter_weather_getx_app/config/app_colors.dart';
+import 'package:flutter_weather_getx_app/data/weather_data.dart';
 import 'package:get/get.dart';
 
 import '../components/widgets/current weather/current_weather.dart';
-import '../components/widgets/header.dart';
+import '../components/widgets/header/header.dart';
 import '../config/app_size.dart';
 import '../controllers/global_controller.dart';
 
@@ -35,48 +38,60 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
         child: Obx(
-          () => globalController.checkLoading().isTrue
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : ListView(
-                  children: [
-                    SizedBox(
-                      height: AppSize.baseSize * 1.3,
-                    ),
+          () {
+            WeatherData weatherData = globalController.getWeatherData();
 
-                    // location name, time
-                    const Header(),
+            return globalController.checkLoading().isTrue
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView(
+                    children: [
+                      SizedBox(
+                        height: AppSize.baseSize * 1.3,
+                      ),
 
-                    // current weather
-                    CurrentWeather(
-                      currentWeatherData: globalController.getWeatherData().getCurrentWeatherData(),
-                    ),
+                      // header
+                      const Header(),
 
-                    SizedBox(
-                      height: AppSize.baseSize * 2,
-                    ),
+                      // current weather
+                      CurrentWeather(
+                        currentWeatherData: weatherData.getCurrentWeatherData(),
+                      ),
 
-                    // hourly weather
-                    HourlyWeather(
-                      hourlyWeatherData: globalController.getWeatherData().getHourlyWeatherData(),
-                    ),
+                      SizedBox(
+                        height: AppSize.baseSize * 2,
+                      ),
 
-                    SizedBox(
-                      height: AppSize.baseSize * 2,
-                    ),
+                      // hourly weather
+                      HourlyWeather(
+                        hourlyWeatherData: weatherData.getHourlyWeatherData(),
+                      ),
 
-                    // daily weather
-                    DailyWeather(
-                      dailyWeatherData: globalController.getWeatherData().getDailyWeatherData(),
-                    ),
+                      SizedBox(
+                        height: AppSize.baseSize * 2,
+                      ),
 
-                    SizedBox(
-                      height: AppSize.baseSize * 2,
-                    ),
+                      // daily weather
+                      DailyWeather(
+                        dailyWeatherData: weatherData.getDailyWeatherData(),
+                      ),
 
-                  ],
-                ),
+                      SizedBox(
+                        height: AppSize.baseSize * 3,
+                      ),
+
+                      // footer
+                      Footer(
+                        currentWeatherData: weatherData.getCurrentWeatherData(),
+                      ),
+
+                      SizedBox(
+                        height: AppSize.baseSize * 2,
+                      ),
+                    ],
+                  );
+          },
         ),
       ),
     );

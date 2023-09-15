@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../config/app_colors.dart';
 import '../../../config/app_size.dart';
 import '../../../models/current_weather_model.dart';
-import '../../methods/celsius_to_fahrenheit.dart';
+import '../../methods/kelvin_to_celsius.dart';
 
 class TemperatureArea extends StatelessWidget {
   const TemperatureArea({
@@ -34,7 +34,7 @@ class TemperatureArea extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "${kelvinToCelsius(current.temp)}°",
+                  text: "${kelvinToCelsius(current.temp).toStringAsFixed(0)}°",
                   style: TextStyle(
                     color: AppColors.textColorBlack,
                     fontWeight: FontWeight.w500,

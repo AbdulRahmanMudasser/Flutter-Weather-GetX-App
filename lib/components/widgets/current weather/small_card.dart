@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weather_getx_app/config/app_size.dart';
 
 import '../../../config/app_colors.dart';
 

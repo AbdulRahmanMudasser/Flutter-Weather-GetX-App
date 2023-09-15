@@ -2,7 +2,7 @@ import 'package:flutter_weather_getx_app/models/weather_model.dart';
 
 class HourlyWeatherModel {
   int dt;
-  int temp;
+  double temp;
   WeatherModel weather;
 
   HourlyWeatherModel({
@@ -15,8 +15,8 @@ class HourlyWeatherModel {
   // we are following the below approach because it is suitable to fetch all the list
   factory HourlyWeatherModel.fromJson(Map<String, dynamic> json) {
     return HourlyWeatherModel(
-      dt: json['dt'],
-      temp: json['main']['temp'].toInt(),
+      dt: json['dt'].toInt(),
+      temp: json['main']['temp'].toDouble(),
       weather: WeatherModel.fromJson(json['weather'][0]),
     );
   }

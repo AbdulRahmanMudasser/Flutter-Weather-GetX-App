@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_weather_getx_app/config/app_size.dart';
 import 'package:flutter_weather_getx_app/data/hourly_weather_data.dart';
 
-import 'hourly_weather_cards.dart';
+import 'vertical_card.dart';
 
 class HourlyWeather extends StatelessWidget {
   final HourlyWeatherData hourlyWeatherData;
@@ -31,7 +31,7 @@ class HourlyWeather extends StatelessWidget {
         ),
 
         // hourly forecasts
-        HourlyWeatherCards(hourlyWeatherData: hourlyWeatherData),
+        VerticalCard(hourlyWeatherData: hourlyWeatherData),
       ],
     );
   }

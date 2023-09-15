@@ -23,26 +23,23 @@ class CurrentWeather extends StatelessWidget {
         ),
 
         // current wind speed, clouds and humidity
-        Padding(
-          padding:  EdgeInsets.symmetric(horizontal: AppSize.baseSize * 3),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SmallCard(
-                leadingText: currentWeatherData.current.wind.speed.toString(),
-                icon: AppAssets.windSpeed,
-                suffixText: " m/s",
-              ),
-              SmallCard(
-                leadingText: currentWeatherData.current.clouds.all.toString(),
-                icon: AppAssets.clouds,
-              ),
-              SmallCard(
-                leadingText: currentWeatherData.current.humidity.toString(),
-                icon: AppAssets.humidity,
-              ),
-            ],
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SmallCard(
+              leadingText: currentWeatherData.current.wind.speed.toString(),
+              icon: AppAssets.windSpeed,
+              suffixText: " m/s",
+            ),
+            SmallCard(
+              leadingText: currentWeatherData.current.clouds.all.toString(),
+              icon: AppAssets.clouds,
+            ),
+            SmallCard(
+              leadingText: currentWeatherData.current.humidity.toString(),
+              icon: AppAssets.humidity,
+            ),
+          ],
         ),
       ],
     );
