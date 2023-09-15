@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_weather_getx_app/components/widgets/daily%20weather/daily_weather.dart';
 import 'package:flutter_weather_getx_app/components/widgets/footer/footer.dart';
 import 'package:flutter_weather_getx_app/components/widgets/hourly%20weather/hourly_weather.dart';
+import 'package:flutter_weather_getx_app/config/app_assets.dart';
 import 'package:flutter_weather_getx_app/config/app_colors.dart';
 import 'package:flutter_weather_getx_app/data/weather_data.dart';
 import 'package:get/get.dart';
@@ -42,8 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
             WeatherData weatherData = globalController.getWeatherData();
 
             return globalController.checkLoading().isTrue
-                ? const Center(
-                    child: CircularProgressIndicator(),
+                ? Center(
+                    child: Image.asset(
+                      AppAssets.clouds,
+                      height: AppSize.baseSize * 22,
+                      width: AppSize.baseSize * 22,
+                    ),
                   )
                 : ListView(
                     children: [
