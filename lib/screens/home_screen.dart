@@ -3,7 +3,6 @@ import 'package:flutter_weather_getx_app/components/widgets/daily%20weather/dail
 import 'package:flutter_weather_getx_app/components/widgets/footer/footer.dart';
 import 'package:flutter_weather_getx_app/components/widgets/hourly%20weather/hourly_weather.dart';
 import 'package:flutter_weather_getx_app/config/app_assets.dart';
-import 'package:flutter_weather_getx_app/config/app_colors.dart';
 import 'package:flutter_weather_getx_app/data/weather_data.dart';
 import 'package:get/get.dart';
 
@@ -44,10 +43,23 @@ class _HomeScreenState extends State<HomeScreen> {
 
             return globalController.checkLoading().isTrue
                 ? Center(
-                    child: Image.asset(
-                      AppAssets.clouds,
-                      height: AppSize.baseSize * 22,
-                      width: AppSize.baseSize * 22,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // image
+                        Image.asset(
+                          AppAssets.clouds,
+                          height: AppSize.baseSize * 22,
+                          width: AppSize.baseSize * 22,
+                        ),
+
+                        // circular progress indicator
+                        const CircularProgressIndicator(),
+
+                        const SizedBox(
+                          height: 100,
+                        ),
+                      ],
                     ),
                   )
                 : ListView(
